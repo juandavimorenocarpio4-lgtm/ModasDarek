@@ -657,9 +657,19 @@
 
 
     <script>
+        // Función para cargar los productos desde la base de datos
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch('/api/productos');
+                const productos = await respuesta.json();
+                console.log('Productos cargados desde la base de datos:', productos);
+            } catch (error) {
+                console.error('Error al conectar con la base de datos:', error);
+            }
+        }
 
-        console.log("ModaStyle cargado correctamente.");
-
+        // Cargar productos cuando se abra la página
+        window.onload = cargarProductos;
     </script>
 
 </body>
