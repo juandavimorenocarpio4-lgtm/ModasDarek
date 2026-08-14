@@ -365,11 +365,11 @@
             const nuevoProducto = { nombre, descripcion, precio, imagen };
 
             try {
-                const respuesta = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'json' },
-                    body: JSON.stringify(nuevoProducto)
-                });
+    const respuesta = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nuevoProducto)
+    });
 
                 if (respuesta.ok) {
                     alert('✅ ¡Producto guardado exitosamente en MySQL!');
