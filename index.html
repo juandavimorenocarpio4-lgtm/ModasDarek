@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ModasDarek | Tienda de Ropa</title>
 
     <style>
@@ -24,7 +23,6 @@
         }
 
         /* ENCABEZADO */
-
         header {
             background-color: #171717;
             color: white;
@@ -59,7 +57,6 @@
         }
 
         /* INICIO */
-
         .inicio {
             min-height: 470px;
             background: linear-gradient(
@@ -67,14 +64,11 @@
                 rgba(0, 0, 0, 0.55)
             ),
             url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80");
-
             background-size: cover;
             background-position: center;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             text-align: center;
             color: white;
             padding: 30px;
@@ -98,6 +92,8 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
         }
 
         .boton:hover {
@@ -105,7 +101,6 @@
         }
 
         /* SECCIONES */
-
         section {
             padding: 65px 7%;
         }
@@ -124,36 +119,35 @@
             color: #666;
         }
 
-        /* CATEGORÍAS */
-
-        .categorias {
+        /* FORMULARIO DE VALIDACIÓN Y REGISTRO */
+        .contenedor-form {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
             background-color: white;
-        }
-
-        .categoria-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .categoria {
-            padding: 30px 20px;
-            text-align: center;
-            border: 1px solid #ddd;
+            padding: 30px;
             border-radius: 8px;
-            background-color: #fafafa;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .categoria h3 {
-            margin-bottom: 10px;
+        .form-grupo {
+            margin-bottom: 18px;
         }
 
-        .categoria p {
-            color: #666;
+        .form-grupo label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .form-grupo input, .form-grupo textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
         }
 
         /* PRODUCTOS */
-
         .productos {
             background-color: #f5f5f5;
         }
@@ -202,48 +196,12 @@
             color: #222;
         }
 
-        /* ADMINISTRACIÓN */
-
-        .administracion {
-            background-color: white;
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .admin-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        .admin-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .admin-card p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        /* CONTACTO */
-
+        /* CONTACTO Y FOOTER */
         .contacto {
             background-color: #171717;
             color: white;
             text-align: center;
         }
-
-        .contacto p {
-            margin-top: 10px;
-            color: #ccc;
-        }
-
-        /* PIE DE PÁGINA */
 
         footer {
             background-color: #0d0d0d;
@@ -254,47 +212,15 @@
         }
 
         /* RESPONSIVE */
-
         @media (max-width: 900px) {
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .categoria-grid,
-            .producto-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .admin-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .inicio h1 {
-                font-size: 38px;
-            }
+            header { flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .producto-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
-
-            .categoria-grid,
-            .producto-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .inicio h1 {
-                font-size: 32px;
-            }
-
-            section {
-                padding: 45px 5%;
-            }
+            .producto-grid { grid-template-columns: 1fr; }
+            section { padding: 45px 5%; }
         }
     </style>
 </head>
@@ -302,376 +228,164 @@
 <body>
 
     <!-- ENCABEZADO -->
-
     <header>
-
-        <div class="logo">
-            ModasDarek actualizado
-        </div>
-
+        <div class="logo">ModasDarek</div>
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#productos">Productos</a></li>
                 <li><a href="#administracion">Administración</a></li>
+                <li><a href="#productos">Productos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-
     </header>
 
-
     <!-- INICIO -->
-
     <section class="inicio" id="inicio">
-
         <div>
-
             <h1>ModasDarek</h1>
-
-            <p>
-                Sistema de gestión para una tienda de ropa
-            </p>
-
-            <a class="boton" href="#productos">
-                Ver productos
-            </a>
-
+            <p>Sistema de gestión para tienda de ropa</p>
+            <a class="boton" href="#productos">Ver productos</a>
         </div>
-
     </section>
 
-
-    <!-- CATEGORÍAS -->
-
-    <section class="categorias" id="categorias">
-
+    <!-- SECCIÓN ADMINISTRACIÓN Y FORMULARIO DE PRUEBAS -->
+    <section class="administracion" id="administracion">
         <div class="titulo-seccion">
-
-            <h2>Categorías</h2>
-
-            <p>
-                Explora nuestras principales categorías de productos.
-            </p>
-
+            <h2>Gestión de Productos</h2>
+            <p>Registro y validación de productos en el sistema</p>
         </div>
 
+        <div class="contenedor-form">
+            <form id="formProducto">
+                <div class="form-grupo">
+                    <label for="nombre">Nombre del Producto *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej: Camisa Negra Oversize">
+                </div>
 
-        <div class="categoria-grid">
+                <div class="form-grupo">
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Ej: Estilo Streetwear, 100% algodón"></textarea>
+                </div>
 
-            <article class="categoria">
+                <div class="form-grupo">
+                    <label for="precio">Precio ($) *</label>
+                    <input type="number" id="precio" name="precio" min="1" step="0.01" required placeholder="Ej: 85000">
+                </div>
 
-                <h3>Camisas</h3>
+                <div class="form-grupo">
+                    <label for="imagen">URL de la Imagen (Opcional)</label>
+                    <input type="url" id="imagen" name="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                </div>
 
-                <p>
-                    Camisas para diferentes estilos y ocasiones.
-                </p>
-
-            </article>
-
-
-            <article class="categoria">
-
-                <h3>Pantalones</h3>
-
-                <p>
-                    Pantalones cómodos y modernos.
-                </p>
-
-            </article>
-
-
-            <article class="categoria">
-
-                <h3>Vestidos</h3>
-
-                <p>
-                    Diseños para diferentes ocasiones.
-                </p>
-
-            </article>
-
-
-            <article class="categoria">
-
-                <h3>Accesorios</h3>
-
-                <p>
-                    Complementos para completar cada estilo.
-                </p>
-
-            </article>
-
+                <button type="submit" class="boton" style="width: 100%;">Guardar Producto</button>
+            </form>
         </div>
-
     </section>
-
 
     <!-- PRODUCTOS -->
-
     <section class="productos" id="productos">
-
         <div class="titulo-seccion">
-
-            <h2>Productos destacados</h2>
-
-            <p>
-                Algunos productos disponibles en nuestra tienda.
-            </p>
-
+            <h2>Catálogo de Productos</h2>
+            <p>Listado persistente almacenado en la Base de Datos MySQL</p>
         </div>
 
-
-        <div class="producto-grid">
-
-
-            <article class="producto">
-
-                <img
-                    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
-                    alt="Camisa básica">
-
-                <div class="producto-info">
-
-                    <h3>Camisa Básica</h3>
-
-                    <p>
-                        Camisa cómoda de diseño sencillo para uso diario.
-                    </p>
-
-                    <span class="precio">$45.000</span>
-
-                </div>
-
-            </article>
-
-
-            <article class="producto">
-
-                <img
-                    src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80"
-                    alt="Pantalón jean">
-
-                <div class="producto-info">
-
-                    <h3>Pantalón Jean</h3>
-
-                    <p>
-                        Jean clásico de corte moderno para diferentes ocasiones.
-                    </p>
-
-                    <span class="precio">$85.000</span>
-
-                </div>
-
-            </article>
-
-
-            <article class="producto">
-
-                <img
-                    src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80"
-                    alt="Vestido floral">
-
-                <div class="producto-info">
-
-                    <h3>Vestido Floral</h3>
-
-                    <p>
-                        Vestido con estampado floral para un estilo elegante.
-                    </p>
-
-                    <span class="precio">$95.000</span>
-
-                </div>
-
-            </article>
-
-
-            <article class="producto">
-
-                <img
-                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
-                    alt="Bolso">
-
-                <div class="producto-info">
-
-                    <h3>Bolso Casual</h3>
-
-                    <p>
-                        Bolso práctico para complementar diferentes estilos.
-                    </p>
-
-                    <span class="precio">$65.000</span>
-
-                </div>
-
-            </article>
-
+        <div class="producto-grid" id="gridProductos">
+            <!-- Los productos cargados dinámicamente desde MySQL se mostrarán aquí -->
         </div>
-
     </section>
-
-
-    <!-- ADMINISTRACIÓN -->
-
-    <section class="administracion" id="administracion">
-
-        <div class="titulo-seccion">
-
-            <h2>Gestión de la tienda</h2>
-
-            <p>
-                Componentes principales del sistema.
-            </p>
-
-        </div>
-
-
-        <div class="admin-grid">
-
-
-            <article class="admin-card">
-
-                <h3>Productos</h3>
-
-                <p>
-                    Permite registrar, consultar, actualizar y administrar
-                    los productos de la tienda.
-                </p>
-
-                <a class="boton" href="#">
-                    Gestionar
-                </a>
-
-            </article>
-
-
-            <article class="admin-card">
-
-                <h3>Clientes</h3>
-
-                <p>
-                    Permite registrar y consultar la información de los
-                    clientes de la tienda.
-                </p>
-
-                <a class="boton" href="#">
-                    Gestionar
-                </a>
-
-            </article>
-
-
-            <article class="admin-card">
-
-                <h3>Inventario</h3>
-
-                <p>
-                    Permite consultar y actualizar las existencias
-                    disponibles de los productos.
-                </p>
-
-                <a class="boton" href="#">
-                    Consultar
-                </a>
-
-            </article>
-
-
-            <article class="admin-card">
-
-                <h3>Categorías</h3>
-
-                <p>
-                    Permite organizar los productos de acuerdo con
-                    sus respectivas categorías.
-                </p>
-
-                <a class="boton" href="#">
-                    Gestionar
-                </a>
-
-            </article>
-
-
-            <article class="admin-card">
-
-                <h3>Ventas</h3>
-
-                <p>
-                    Permite registrar y consultar las ventas realizadas
-                    en la tienda.
-                </p>
-
-                <a class="boton" href="#">
-                    Registrar
-                </a>
-
-            </article>
-
-
-            <article class="admin-card">
-
-                <h3>Detalle de venta</h3>
-
-                <p>
-                    Permite consultar los productos, cantidades, precios
-                    unitarios y subtotales de una venta.
-                </p>
-
-                <a class="boton" href="#">
-                    Consultar
-                </a>
-
-            </article>
-
-        </div>
-
-    </section>
-
 
     <!-- CONTACTO -->
-
     <section class="contacto" id="contacto">
-
         <h2>Contacto</h2>
-
-        <p>
-            Sistema de gestión de tienda de ropa - ModasDarek
-        </p>
-
+        <p>Sistema de gestión de tienda de ropa - ModasDarek</p>
     </section>
 
-
     <!-- FOOTER -->
-
     <footer>
-
-        <p>
-            © 2026 ModasDarek - Sistema de gestión para tienda de ropa
-        </p>
-
+        <p>© 2026 ModasDarek - Sistema de gestión para tienda de ropa</p>
     </footer>
 
-
+    <!-- SCRIPT DE INTERACCIÓN, VALIDACIÓN Y CONSUMO DE API REST -->
     <script>
-        // Función para cargar los productos desde la base de datos
+        const API_URL = '/api/productos';
+
+        // 1. Cargar productos desde MySQL al cargar la vista
         async function cargarProductos() {
             try {
-                const respuesta = await fetch('/api/productos');
+                const respuesta = await fetch(API_URL);
                 const productos = await respuesta.json();
-                console.log('Productos cargados desde la base de datos:', productos);
+
+                const grid = document.getElementById('gridProductos');
+                grid.innerHTML = '';
+
+                if (productos.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No hay productos registrados en la base de datos.</p>';
+                    return;
+                }
+
+                productos.forEach(p => {
+                    const imgUrl = p.imagen || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80';
+                    grid.innerHTML += `
+                        <article class="producto">
+                            <img src="${imgUrl}" alt="${p.nombre}">
+                            <div class="producto-info">
+                                <h3>${p.nombre}</h3>
+                                <p>${p.descripcion}</p>
+                                <span class="precio">$${Number(p.precio).toLocaleString('es-CO')}</span>
+                            </div>
+                        </article>
+                    `;
+                });
             } catch (error) {
-                console.error('Error al conectar con la base de datos:', error);
+                console.error('Error al conectar con la API de productos:', error);
             }
         }
 
-        // Cargar productos cuando se abra la página
+        // 2. Evento para capturar, validar y enviar un nuevo producto
+        document.getElementById('formProducto').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const descripcion = document.getElementById('descripcion').value.trim();
+            const precio = document.getElementById('precio').value;
+            const imagen = document.getElementById('imagen').value.trim();
+
+            // Validación en el lado del cliente (Frontend)
+            if (!nombre || !descripcion || !precio) {
+                alert('⚠️ Por favor completa todos los campos obligatorios.');
+                return;
+            }
+
+            if (precio <= 0) {
+                alert('⚠️ El precio debe ser un número mayor a cero.');
+                return;
+            }
+
+            const nuevoProducto = { nombre, descripcion, precio, imagen };
+
+            try {
+                const respuesta = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'json' },
+                    body: JSON.stringify(nuevoProducto)
+                });
+
+                if (respuesta.ok) {
+                    alert('✅ ¡Producto guardado exitosamente en MySQL!');
+                    document.getElementById('formProducto').reset();
+                    cargarProductos(); // Recargar el catálogo
+                } else {
+                    alert('❌ Error al guardar el producto.');
+                }
+            } catch (error) {
+                console.error('Error en la transacción:', error);
+                alert('❌ Error de comunicación con el servidor backend.');
+            }
+        });
+
+        // Cargar productos al abrir la página
         window.onload = cargarProductos;
     </script>
-
 </body>
-
 </html>
