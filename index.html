@@ -3,389 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModasDarek | Tienda de Ropa</title>
+    <title>ModasDarek | Sistema de Gestión</title>
+
+    <!-- Framework utilizado: Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: #030712; }
+        .glass {
+            background: rgba(15, 23, 42, .82);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(148, 163, 184, .12);
         }
-
-        html {
-            scroll-behavior: smooth;
+        .gradient {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
         }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #222;
+        .gradient-text {
+            background: linear-gradient(135deg, #818cf8, #c4b5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        /* ENCABEZADO */
-        header {
-            background-color: #171717;
-            color: white;
-            padding: 18px 7%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .card-hover {
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
         }
-
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        nav a:hover {
-            color: #d4a373;
-        }
-
-        /* INICIO */
-        .inicio {
-            min-height: 470px;
-            background: linear-gradient(
-                rgba(0, 0, 0, 0.55),
-                rgba(0, 0, 0, 0.55)
-            ),
-            url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 30px;
-        }
-
-        .inicio h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .inicio p {
-            font-size: 20px;
-            margin-bottom: 25px;
-        }
-
-        .boton {
-            display: inline-block;
-            background-color: #d4a373;
-            color: white;
-            padding: 13px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-
-        .boton:hover {
-            background-color: #b5835a;
-        }
-
-        /* SECCIONES */
-        section {
-            padding: 65px 7%;
-        }
-
-        .titulo-seccion {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .titulo-seccion h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .titulo-seccion p {
-            color: #666;
-        }
-
-        /* FORMULARIO DE VALIDACIÓN Y REGISTRO */
-        .contenedor-form {
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-grupo {
-            margin-bottom: 18px;
-        }
-
-        .form-grupo label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        .form-grupo input, .form-grupo textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-
-        /* PRODUCTOS */
-        .productos {
-            background-color: #f5f5f5;
-        }
-
-        .producto-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-
-        .producto {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s;
-        }
-
-        .producto:hover {
+        .card-hover:hover {
             transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(99, 102, 241, .14);
+            border-color: rgba(129, 140, 248, .35);
         }
-
-        .producto img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
+        .tab-active {
+            background: linear-gradient(135deg, rgba(99,102,241,.95), rgba(139,92,246,.95));
+            color: white !important;
+            box-shadow: 0 8px 22px rgba(99,102,241,.18);
         }
-
-        .producto-info {
-            padding: 18px;
+        .fade { animation: fadeIn .25s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .producto-info h3 {
-            margin-bottom: 8px;
-        }
-
-        .producto-info p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .precio {
-            font-size: 19px;
-            font-weight: bold;
-            color: #222;
-        }
-
-        /* CONTACTO Y FOOTER */
-        .contacto {
-            background-color: #171717;
-            color: white;
-            text-align: center;
-        }
-
-        footer {
-            background-color: #0d0d0d;
-            color: #aaa;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            header { flex-direction: column; gap: 15px; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
-            .producto-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 600px) {
-            .producto-grid { grid-template-columns: 1fr; }
-            section { padding: 45px 5%; }
+        .modal-backdrop { background: rgba(0,0,0,.72); backdrop-filter: blur(5px); }
+        .scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        @media (max-width: 768px) {
+            .sidebar { width: 76px; }
+            .sidebar-label, .brand-text { display: none; }
+            .main-content { margin-left: 76px; }
         }
     </style>
 </head>
 
-<body>
+<body class="text-slate-100 min-h-screen">
 
-    <!-- ENCABEZADO -->
-    <header>
-        <div class="logo">ModasDarek</div>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#administracion">Administración</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar fixed left-0 top-0 h-screen w-60 glass z-40 border-r border-slate-800/70">
+        <div class="p-4">
+            <div class="flex items-center gap-3 mb-7 mt-2">
+                <div class="w-11 h-11 rounded-xl gradient flex items-center justify-center font-extrabold text-lg shadow-lg shadow-indigo-500/25">M</div>
+                <div class="brand-text">
+                    <h1 class="font-extrabold text-white tracking-wide">MODAS DAREK</h1>
+                    <p class="text-xs text-slate-400">Sistema de Gestión</p>
+                </div>
+            </div>
 
-    <!-- INICIO -->
-    <section class="inicio" id="inicio">
-        <div>
-            <h1>ModasDarek</h1>
-            <p>Sistema de gestión para tienda de ropa</p>
-            <a class="boton" href="#productos">Ver productos</a>
+            <nav id="menu" class="space-y-2">
+                <button data-section="catalogo" onclick="mostrarSeccion('catalogo')" class="nav-btn tab-active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-indigo-500/10 transition">
+                    <i class="fa-solid fa-store w-5 text-center"></i><span class="sidebar-label">Catálogo</span>
+                </button>
+                <button data-section="productos" onclick="mostrarSeccion('productos')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-indigo-500/10 transition">
+                    <i class="fa-solid fa-shirt w-5 text-center"></i><span class="sidebar-label">Productos</span>
+                </button>
+                <button data-section="categorias" onclick="mostrarSeccion('categorias')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-indigo-500/10 transition">
+                    <i class="fa-solid fa-tags w-5 text-center"></i><span class="sidebar-label">Categorías</span>
+                </button>
+                <button data-section="clientes" onclick="mostrarSeccion('clientes')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-indigo-500/10 transition">
+                    <i class="fa-solid fa-users w-5 text-center"></i><span class="sidebar-label">Clientes</span>
+                </button>
+                <button data-section="ventas" onclick="mostrarSeccion('ventas')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-indigo-500/10 transition">
+                    <i class="fa-solid fa-cash-register w-5 text-center"></i><span class="sidebar-label">Ventas</span>
+                </button>
+                <button data-section="nueva-venta" onclick="mostrarSeccion('nueva-venta')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-emerald-400 hover:bg-emerald-500/10 transition">
+                    <i class="fa-solid fa-plus w-5 text-center"></i><span class="sidebar-label">Nueva venta</span>
+                </button>
+            </nav>
         </div>
-    </section>
+    </aside>
 
-    <!-- SECCIÓN ADMINISTRACIÓN Y FORMULARIO DE PRUEBAS -->
-    <section class="administracion" id="administracion">
-        <div class="titulo-seccion">
-            <h2>Gestión de Productos</h2>
-            <p>Registro y validación de productos en el sistema</p>
-        </div>
+    <!-- CONTENIDO -->
+    <main class="main-content ml-60 min-h-screen">
+        <header class="glass sticky top-0 z-30 border-b border-slate-800/70 px-6 md:px-8 py-4 flex items-center justify-between">
+            <div>
+                <h2 id="tituloSeccion" class="text-xl font-extrabold text-white">Catálogo de Productos</h2>
+                <p id="subtituloSeccion" class="text-sm text-slate-400">Explora nuestra colección disponible</p>
+            </div>
+            <button onclick="mostrarSeccion('login')" class="px-4 py-2 rounded-lg text-sm font-semibold border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/10 transition">
+                <i class="fa-solid fa-lock mr-2"></i>Administración
+            </button>
+        </header>
 
-        <div class="contenedor-form">
-            <form id="formProducto">
-                <div class="form-grupo">
-                    <label for="nombre">Nombre del Producto *</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Ej: Camisa Negra Oversize">
+        <div class="p-5 md:p-8">
+
+            <!-- LOGIN -->
+            <section id="sec-login" class="seccion hidden fade">
+                <div class="max-w-md mx-auto mt-10">
+                    <div class="glass rounded-2xl p-8 shadow-2xl">
+                        <div class="w-14 h-14 mx-auto rounded-2xl gradient flex items-center justify-center text-xl mb-5">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-center">Acceso Administrativo</h2>
+                        <p class="text-sm text-slate-400 text-center mt-2 mb-6">Ingresa para administrar la tienda.</p>
+
+                        <div class="space-y-4">
+                            <input id="usuario" type="text" class="w-full px-4 py-3 rounded-lg bg-slate-950/70 border border-slate-700 outline-none focus:border-indigo-500" placeholder="Usuario">
+                            <input id="clave" type="password" class="w-full px-4 py-3 rounded-lg bg-slate-950/70 border border-slate-700 outline-none focus:border-indigo-500" placeholder="Contraseña">
+                            <button onclick="ingresar()" class="w-full gradient py-3 rounded-lg font-bold hover:opacity-90 transition">Ingresar</button>
+                        </div>
+                        <p class="text-xs text-slate-500 text-center mt-4">Demo: admin / 1234</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CATALOGO -->
+            <section id="sec-catalogo" class="seccion fade">
+                <div class="flex flex-col md:flex-row gap-3 mb-6">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-500"></i>
+                        <input id="buscar" oninput="filtrarProductos()" type="text" placeholder="Buscar producto por nombre..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/70 border border-slate-700 outline-none focus:border-indigo-500">
+                    </div>
+                    <select id="filtroCat" onchange="filtrarProductos()" class="px-4 py-3 rounded-xl bg-slate-900/70 border border-slate-700 outline-none focus:border-indigo-500">
+                        <option value="">Todas las categorías</option>
+                    </select>
                 </div>
 
-                <div class="form-grupo">
-                    <label for="descripcion">Descripción *</label>
-                    <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Ej: Estilo Streetwear, 100% algodón"></textarea>
+                <div id="gridCatalogo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+            </section>
+
+            <!-- PRODUCTOS -->
+            <section id="sec-productos" class="seccion hidden fade">
+                <div class="flex flex-col sm:flex-row justify-between gap-3 mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold">Productos registrados</h3>
+                        <p class="text-sm text-slate-400">Consulta y administra el catálogo.</p>
+                    </div>
+                    <button onclick="abrirModalProducto()" class="gradient px-5 py-2.5 rounded-lg font-semibold shadow-lg shadow-indigo-500/20">
+                        <i class="fa-solid fa-plus mr-2"></i>Registrar producto
+                    </button>
                 </div>
 
-                <div class="form-grupo">
-                    <label for="precio">Precio ($) *</label>
-                    <input type="number" id="precio" name="precio" min="1" step="0.01" required placeholder="Ej: 85000">
+                <div class="overflow-x-auto rounded-xl border border-slate-800/70">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-900 text-slate-400 uppercase text-xs">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Producto</th>
+                                <th class="px-4 py-3 text-left">Categoría</th>
+                                <th class="px-4 py-3 text-left">Talla / Color</th>
+                                <th class="px-4 py-3 text-right">Precio</th>
+                                <th class="px-4 py-3 text-center">Stock</th>
+                                <th class="px-4 py-3 text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaProductos" class="divide-y divide-slate-800/60"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- CATEGORIAS -->
+            <section id="sec-categorias" class="seccion hidden fade">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold">Categorías</h3>
+                        <p class="text-sm text-slate-400">Organiza los productos de la tienda.</p>
+                    </div>
+                    <button onclick="abrirModalCategoria()" class="gradient px-4 py-2.5 rounded-lg font-semibold">
+                        <i class="fa-solid fa-plus mr-2"></i>Nueva
+                    </button>
+                </div>
+                <div id="gridCategorias" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </section>
+
+            <!-- CLIENTES -->
+            <section id="sec-clientes" class="seccion hidden fade">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold">Clientes</h3>
+                        <p class="text-sm text-slate-400">Información de clientes registrados.</p>
+                    </div>
+                    <button onclick="abrirModalCliente()" class="gradient px-4 py-2.5 rounded-lg font-semibold">
+                        <i class="fa-solid fa-user-plus mr-2"></i>Nuevo cliente
+                    </button>
                 </div>
 
-                <div class="form-grupo">
-                    <label for="imagen">URL de la Imagen (Opcional)</label>
-                    <input type="url" id="imagen" name="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                <div class="overflow-x-auto rounded-xl border border-slate-800/70">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-900 text-slate-400 uppercase text-xs">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Nombre</th>
+                                <th class="px-4 py-3 text-left">Correo</th>
+                                <th class="px-4 py-3 text-left">Teléfono</th>
+                                <th class="px-4 py-3 text-left">Dirección</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaClientes" class="divide-y divide-slate-800/60"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VENTAS -->
+            <section id="sec-ventas" class="seccion hidden fade">
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold">Historial de ventas</h3>
+                    <p class="text-sm text-slate-400">Consulta las ventas registradas en el sistema.</p>
                 </div>
 
-                <button type="submit" class="boton" style="width: 100%;">Guardar Producto</button>
-            </form>
-        </div>
-    </section>
+                <div class="overflow-x-auto rounded-xl border border-slate-800/70">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-900 text-slate-400 uppercase text-xs">
+                            <tr>
+                                <th class="px-4 py-3 text-left">N° Venta</th>
+                                <th class="px-4 py-3 text-left">Fecha</th>
+                                <th class="px-4 py-3 text-left">Cliente</th>
+                                <th class="px-4 py-3 text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaVentas" class="divide-y divide-slate-800/60"></tbody>
+                    </table>
+                </div>
+            </section>
 
-    <!-- PRODUCTOS -->
-    <section class="productos" id="productos">
-        <div class="titulo-seccion">
-            <h2>Catálogo de Productos</h2>
-            <p>Listado persistente almacenado en la Base de Datos MySQL</p>
-        </div>
-
-        <div class="producto-grid" id="gridProductos">
-            <!-- Los productos cargados dinámicamente desde MySQL se mostrarán aquí -->
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="contacto" id="contacto">
-        <h2>Contacto</h2>
-        <p>Sistema de gestión de tienda de ropa - ModasDarek</p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 ModasDarek - Sistema de gestión para tienda de ropa</p>
-    </footer>
-
-    <!-- SCRIPT DE INTERACCIÓN, VALIDACIÓN Y CONSUMO DE API REST -->
-    <script>
-        const API_URL = '/api/productos';
-
-        // 1. Cargar productos desde MySQL al cargar la vista
-        async function cargarProductos() {
-            try {
-                const respuesta = await fetch(API_URL);
-                const productos = await respuesta.json();
-
-                const grid = document.getElementById('gridProductos');
-                grid.innerHTML = '';
-
-                if (productos.length === 0) {
-                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No hay productos registrados en la base de datos.</p>';
-                    return;
-                }
-
-                productos.forEach(p => {
-                    const imgUrl = p.imagen || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80';
-                    grid.innerHTML += `
-                        <article class="producto">
-                            <img src="${imgUrl}" alt="${p.nombre}">
-                            <div class="producto-info">
-                                <h3>${p.nombre}</h3>
-                                <p>${p.descripcion}</p>
-                                <span class="precio">$${Number(p.precio).toLocaleString('es-CO')}</span>
+            <!-- NUEVA VENTA -->
+            <section id="sec-nueva-venta" class="seccion hidden fade">
+                <div class="max-w-3xl mx-auto">
+                    <div class="glass rounded-2xl p-6 md:p-8">
+                        <div class="flex items-center gap-4 mb-7">
+                            <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-cash-register"></i>
                             </div>
-                        </article>
-                    `;
-                });
-            } catch (error) {
-                console.error('Error al conectar con la API de productos:', error);
+                            <div>
+                                <h3 class="text-xl font-extrabold">Registrar nueva venta</h3>
+                                <p class="text-sm text-slate-400">Selecciona cliente y producto.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-sm text-slate-400">Cliente</label>
+                                <select id="ventaCliente" class="mt-1 w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700"></select>
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-400">Producto</label>
+                                <select id="ventaProducto" class="mt-1 w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700"></select>
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-400">Cantidad</label>
+                                <input id="ventaCantidad" type="number" min="1" value="1" class="mt-1 w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700">
+                            </div>
+                            <div class="flex items-end">
+                                <button onclick="registrarVenta()" class="w-full gradient px-5 py-3 rounded-lg font-bold">
+                                    <i class="fa-solid fa-check mr-2"></i>Registrar venta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL -->
+    <div id="modal" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+        <div class="glass w-full max-w-lg rounded-2xl p-6 shadow-2xl fade">
+            <div class="flex justify-between items-center mb-5">
+                <h3 id="modalTitulo" class="text-xl font-extrabold"></h3>
+                <button onclick="cerrarModal()" class="text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="modalContenido"></div>
+        </div>
+    </div>
+
+    <script>
+        // Datos iniciales del proyecto ModasDarek.
+        const productosIniciales = [
+            {
+                id: 1, nombre: 'Camiseta Oversize Negra', categoria: 'Camisetas',
+                talla: 'M', color: 'Negro', precio: 45000, stock: 20,
+                imagen: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700&h=500&fit=crop'
+            },
+            {
+                id: 2, nombre: 'Jean Classic Blue', categoria: 'Pantalones',
+                talla: '32', color: 'Azul', precio: 95000, stock: 15,
+                imagen: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=700&h=500&fit=crop'
+            },
+            {
+                id: 3, nombre: 'Vestido Floral', categoria: 'Vestidos',
+                talla: 'S', color: 'Multicolor', precio: 78000, stock: 8,
+                imagen: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=700&h=500&fit=crop'
+            },
+            {
+                id: 4, nombre: 'Chaqueta Deportiva Gris', categoria: 'Chaquetas',
+                talla: 'L', color: 'Gris', precio: 125000, stock: 10,
+                imagen: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=700&h=500&fit=crop'
+            },
+            {
+                id: 5, nombre: 'Gorra Deportiva', categoria: 'Accesorios',
+                talla: 'Única', color: 'Negro', precio: 25000, stock: 30,
+                imagen: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&h=500&fit=crop'
+            }
+        ];
+
+        let productos = JSON.parse(localStorage.getItem('modas_productos')) || productosIniciales;
+        let categorias = JSON.parse(localStorage.getItem('modas_categorias')) ||
+            ['Camisetas', 'Pantalones', 'Vestidos', 'Chaquetas', 'Accesorios'];
+        let clientes = JSON.parse(localStorage.getItem('modas_clientes')) || [
+            { nombre: 'Carlos Mendoza', correo: 'carlos@email.com', telefono: '3001234567', direccion: 'Calle 12 #4-20' },
+            { nombre: 'Andrea López', correo: 'andrea@email.com', telefono: '3109876543', direccion: 'Av. Principal 50' }
+        ];
+        let ventas = JSON.parse(localStorage.getItem('modas_ventas')) || [
+            { id: 1, fecha: '13/08/2026 21:35', cliente: 'Carlos Mendoza', total: 140000 }
+        ];
+
+        const titulos = {
+            login: ['Inicio de Sesión', 'Ingresa tus credenciales de administrador'],
+            catalogo: ['Catálogo de Productos', 'Explora nuestra colección disponible'],
+            productos: ['Gestión de Productos', 'Registra y administra productos'],
+            categorias: ['Gestión de Categorías', 'Organiza los productos por categorías'],
+            clientes: ['Gestión de Clientes', 'Información de clientes registrados'],
+            ventas: ['Historial de Ventas', 'Consulta todas las ventas realizadas'],
+            'nueva-venta': ['Registrar Nueva Venta', 'Completa los datos para registrar una venta']
+        };
+
+        function guardar() {
+            localStorage.setItem('modas_productos', JSON.stringify(productos));
+            localStorage.setItem('modas_categorias', JSON.stringify(categorias));
+            localStorage.setItem('modas_clientes', JSON.stringify(clientes));
+            localStorage.setItem('modas_ventas', JSON.stringify(ventas));
+        }
+
+        function dinero(valor) {
+            return Number(valor).toLocaleString('es-CO');
+        }
+
+        function mostrarSeccion(nombre) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.add('hidden'));
+            const sec = document.getElementById(`sec-${nombre}`);
+            if (sec) sec.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.toggle('tab-active', btn.dataset.section === nombre);
+            });
+
+            document.getElementById('tituloSeccion').textContent = titulos[nombre]?.[0] || 'ModasDarek';
+            document.getElementById('subtituloSeccion').textContent = titulos[nombre]?.[1] || 'Sistema de gestión';
+
+            if (nombre === 'catalogo') renderizarCatalogo();
+            if (nombre === 'productos') renderizarTablaProductos();
+            if (nombre === 'categorias') renderizarCategorias();
+            if (nombre === 'clientes') renderizarClientes();
+            if (nombre === 'ventas') renderizarVentas();
+            if (nombre === 'nueva-venta') prepararVenta();
+        }
+
+        function ingresar() {
+            const usuario = document.getElementById('usuario').value.trim();
+            const clave = document.getElementById('clave').value;
+
+            if (usuario === 'admin' && clave === '1234') {
+                alert('Acceso correcto. Bienvenido al área administrativa.');
+                mostrarSeccion('productos');
+            } else {
+                alert('Credenciales incorrectas. Usa admin / 1234 para la demostración.');
             }
         }
 
-        // 2. Evento para capturar, validar y enviar un nuevo producto
-        document.getElementById('formProducto').addEventListener('submit', async (e) => {
+        function llenarCategorias() {
+            const select = document.getElementById('filtroCat');
+            select.innerHTML = '<option value="">Todas las categorías</option>' +
+                categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+
+        function filtrarProductos() {
+            const texto = document.getElementById('buscar').value.toLowerCase();
+            const cat = document.getElementById('filtroCat').value;
+
+            const lista = productos.filter(p =>
+                p.nombre.toLowerCase().includes(texto) &&
+                (!cat || p.categoria === cat)
+            );
+
+            renderizarCatalogo(lista);
+        }
+
+        function renderizarCatalogo(lista = productos) {
+            const cont = document.getElementById('gridCatalogo');
+
+            if (!lista.length) {
+                cont.innerHTML = `
+                    <div class="col-span-full text-center py-16 text-slate-500">
+                        <i class="fa-solid fa-box-open text-4xl mb-4"></i>
+                        <p>No se encontraron productos.</p>
+                    </div>`;
+                return;
+            }
+
+            cont.innerHTML = lista.map(p => `
+                <article class="glass rounded-2xl overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="${p.imagen}" alt="${p.nombre}"
+                             class="w-full h-48 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/700x500/111827/818cf8?text=ModasDarek';">
+                        <span class="absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full bg-slate-950/80 text-indigo-300 border border-indigo-400/20">${p.categoria}</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-lg">${p.nombre}</h4>
+                        <p class="text-sm text-slate-400 mt-1">${p.talla} · ${p.color}</p>
+                        <p class="text-xs text-slate-500 mt-2">Producto de calidad para nuestra colección.</p>
+                        <div class="flex items-center justify-between mt-5 pt-4 border-t border-slate-800/70">
+                            <span class="text-xl font-extrabold text-emerald-400">$${dinero(p.precio)}</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400">Stock: ${p.stock}</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderizarTablaProductos() {
+            document.getElementById('tablaProductos').innerHTML = productos.map(p => `
+                <tr class="hover:bg-indigo-500/5">
+                    <td class="px-4 py-3 font-semibold">${p.nombre}</td>
+                    <td class="px-4 py-3 text-slate-400">${p.categoria}</td>
+                    <td class="px-4 py-3">${p.talla} / ${p.color}</td>
+                    <td class="px-4 py-3 text-right font-semibold">$${dinero(p.precio)}</td>
+                    <td class="px-4 py-3 text-center text-emerald-400 font-semibold">${p.stock}</td>
+                    <td class="px-4 py-3 text-center">
+                        <button onclick="eliminarProducto(${p.id})" class="text-red-400 hover:text-red-300" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderizarCategorias() {
+            document.getElementById('gridCategorias').innerHTML = categorias.map((c, i) => {
+                const cantidad = productos.filter(p => p.categoria === c).length;
+                return `
+                    <div class="glass rounded-xl p-5 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+                                <i class="fa-solid fa-tag"></i>
+                            </div>
+                            <button onclick="eliminarCategoria(${i})" class="text-slate-500 hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <h4 class="font-bold text-white mt-4">${c}</h4>
+                        <p class="text-sm text-slate-400 mt-1">${cantidad} producto(s) registrado(s)</p>
+                    </div>`;
+            }).join('');
+        }
+
+        function renderizarClientes() {
+            document.getElementById('tablaClientes').innerHTML = clientes.map(c => `
+                <tr class="hover:bg-indigo-500/5">
+                    <td class="px-4 py-3 font-semibold">${c.nombre}</td>
+                    <td class="px-4 py-3 text-slate-400">${c.correo}</td>
+                    <td class="px-4 py-3">${c.telefono}</td>
+                    <td class="px-4 py-3">${c.direccion}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderizarVentas() {
+            document.getElementById('tablaVentas').innerHTML = ventas.map(v => `
+                <tr class="hover:bg-indigo-500/5">
+                    <td class="px-4 py-3 font-semibold">#${v.id}</td>
+                    <td class="px-4 py-3">${v.fecha}</td>
+                    <td class="px-4 py-3">${v.cliente}</td>
+                    <td class="px-4 py-3 text-right font-bold text-emerald-400">$${dinero(v.total)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function abrirModal(titulo, contenido) {
+            document.getElementById('modalTitulo').textContent = titulo;
+            document.getElementById('modalContenido').innerHTML = contenido;
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function abrirModalProducto() {
+            abrirModal('Registrar producto', `
+                <form onsubmit="guardarProducto(event)" class="space-y-4">
+                    <input id="pNombre" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Nombre del producto">
+                    <select id="pCategoria" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700">
+                        ${categorias.map(c => `<option>${c}</option>`).join('')}
+                    </select>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input id="pTalla" required class="px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Talla">
+                        <input id="pColor" required class="px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Color">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input id="pPrecio" required type="number" min="0" class="px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Precio">
+                        <input id="pStock" required type="number" min="0" class="px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Stock">
+                    </div>
+                    <input id="pImagen" class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="URL de imagen (opcional)">
+                    <button class="w-full gradient py-3 rounded-lg font-bold">Guardar producto</button>
+                </form>
+            `);
+        }
+
+        function guardarProducto(e) {
             e.preventDefault();
+            productos.push({
+                id: Date.now(),
+                nombre: document.getElementById('pNombre').value,
+                categoria: document.getElementById('pCategoria').value,
+                talla: document.getElementById('pTalla').value,
+                color: document.getElementById('pColor').value,
+                precio: Number(document.getElementById('pPrecio').value),
+                stock: Number(document.getElementById('pStock').value),
+                imagen: document.getElementById('pImagen').value || 'https://placehold.co/700x500/111827/818cf8?text=ModasDarek'
+            });
+            guardar();
+            cerrarModal();
+            renderizarTablaProductos();
+            llenarCategorias();
+            alert('Producto registrado correctamente.');
+        }
 
-            const nombre = document.getElementById('nombre').value.trim();
-            const descripcion = document.getElementById('descripcion').value.trim();
-            const precio = document.getElementById('precio').value;
-            const imagen = document.getElementById('imagen').value.trim();
+        function eliminarProducto(id) {
+            if (!confirm('¿Eliminar este producto?')) return;
+            productos = productos.filter(p => p.id !== id);
+            guardar();
+            renderizarTablaProductos();
+            renderizarCatalogo();
+        }
 
-            // Validación en el lado del cliente (Frontend)
-            if (!nombre || !descripcion || !precio) {
-                alert('⚠️ Por favor completa todos los campos obligatorios.');
+        function abrirModalCategoria() {
+            abrirModal('Registrar categoría', `
+                <form onsubmit="guardarCategoria(event)" class="space-y-4">
+                    <input id="nombreCategoria" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Nombre de la categoría">
+                    <button class="w-full gradient py-3 rounded-lg font-bold">Guardar categoría</button>
+                </form>
+            `);
+        }
+
+        function guardarCategoria(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombreCategoria').value.trim();
+            if (categorias.some(c => c.toLowerCase() === nombre.toLowerCase())) {
+                alert('La categoría ya existe.');
+                return;
+            }
+            categorias.push(nombre);
+            guardar();
+            cerrarModal();
+            llenarCategorias();
+            renderizarCategorias();
+        }
+
+        function eliminarCategoria(i) {
+            const nombre = categorias[i];
+            if (productos.some(p => p.categoria === nombre)) {
+                alert('No se puede eliminar una categoría que tiene productos asociados.');
+                return;
+            }
+            if (!confirm(`¿Eliminar la categoría "${nombre}"?`)) return;
+            categorias.splice(i, 1);
+            guardar();
+            llenarCategorias();
+            renderizarCategorias();
+        }
+
+        function abrirModalCliente() {
+            abrirModal('Registrar cliente', `
+                <form onsubmit="guardarCliente(event)" class="space-y-4">
+                    <input id="cNombre" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Nombre completo">
+                    <input id="cCorreo" required type="email" class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Correo electrónico">
+                    <input id="cTelefono" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Teléfono">
+                    <input id="cDireccion" required class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700" placeholder="Dirección">
+                    <button class="w-full gradient py-3 rounded-lg font-bold">Guardar cliente</button>
+                </form>
+            `);
+        }
+
+        function guardarCliente(e) {
+            e.preventDefault();
+            clientes.push({
+                nombre: document.getElementById('cNombre').value,
+                correo: document.getElementById('cCorreo').value,
+                telefono: document.getElementById('cTelefono').value,
+                direccion: document.getElementById('cDireccion').value
+            });
+            guardar();
+            cerrarModal();
+            renderizarClientes();
+            prepararVenta();
+            alert('Cliente registrado correctamente.');
+        }
+
+        function prepararVenta() {
+            document.getElementById('ventaCliente').innerHTML =
+                clientes.map(c => `<option value="${c.nombre}">${c.nombre}</option>`).join('');
+            document.getElementById('ventaProducto').innerHTML =
+                productos.map(p => `<option value="${p.id}">${p.nombre} - $${dinero(p.precio)}</option>`).join('');
+        }
+
+        function registrarVenta() {
+            const cliente = document.getElementById('ventaCliente').value;
+            const productoId = Number(document.getElementById('ventaProducto').value);
+            const cantidad = Number(document.getElementById('ventaCantidad').value);
+            const producto = productos.find(p => p.id === productoId);
+
+            if (!cliente || !producto || cantidad < 1) {
+                alert('Completa los datos de la venta.');
                 return;
             }
 
-            if (precio <= 0) {
-                alert('⚠️ El precio debe ser un número mayor a cero.');
+            if (cantidad > producto.stock) {
+                alert('No hay suficiente stock disponible.');
                 return;
             }
 
-            const nuevoProducto = { nombre, descripcion, precio, imagen };
+            producto.stock -= cantidad;
+            ventas.push({
+                id: ventas.length ? Math.max(...ventas.map(v => v.id)) + 1 : 1,
+                fecha: new Date().toLocaleString('es-CO'),
+                cliente,
+                total: producto.precio * cantidad
+            });
 
-            try {
-    const respuesta = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nuevoProducto)
-    });
+            guardar();
+            renderizarVentas();
+            renderizarTablaProductos();
+            alert('Venta registrada correctamente.');
+            document.getElementById('ventaCantidad').value = 1;
+        }
 
-                if (respuesta.ok) {
-                    alert('✅ ¡Producto guardado exitosamente en MySQL!');
-                    document.getElementById('formProducto').reset();
-                    cargarProductos(); // Recargar el catálogo
-                } else {
-                    alert('❌ Error al guardar el producto.');
-                }
-            } catch (error) {
-                console.error('Error en la transacción:', error);
-                alert('❌ Error de comunicación con el servidor backend.');
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            llenarCategorias();
+            renderizarCatalogo();
+            renderizarTablaProductos();
+            renderizarCategorias();
+            renderizarClientes();
+            renderizarVentas();
+            prepararVenta();
         });
-
-        // Cargar productos al abrir la página
-        window.onload = cargarProductos;
     </script>
 </body>
 </html>
